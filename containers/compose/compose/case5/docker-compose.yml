@@ -1,0 +1,29 @@
+services:
+  db:
+    image: mysql:5.7-debian
+    container_name: piwigo_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: piwigo
+      MYSQL_USER: piwigo_user
+      MYSQL_PASSWORD: piwigo_pass
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+
+  piwigo:
+    image: linuxserver/piwigo
+    container_name: piwigo_app
+    environment:
+      PIWIGO_DB_HOST: db
+      PIWIGO_DB_NAME: piwigo
+      PIWIGO_DB_USER: piwigo_user
+      PIWIGO_DB_PASSWORD: piwigo_pass
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    restart: always
+
+volumes:
+  db_data:

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tugas-5-cc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tugas-5-cc
+  template:
+    metadata:
+      labels:
+        app: tugas-5-cc
+    spec:
+      containers:
+      - name: drewwebserver
+        image: drewwebserver:latest
+        imagePullPolicy: Never # use only what is on local pwease :3
+        ports:
+        - containerPort: 80

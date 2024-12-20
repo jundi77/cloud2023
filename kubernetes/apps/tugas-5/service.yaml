@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tugas-5-cc-service
+spec:
+  selector:
+    app: tugas-5-cc
+  ports:
+  - protocol: TCP
+    port: 80
